@@ -1,7 +1,8 @@
 # Lite-Git
 
 To initialize the repository-
-~lite init
+
+~lite init <filename>
 
 
 
