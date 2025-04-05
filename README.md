@@ -1,59 +1,120 @@
-# Lite-Git
+# 🚀 Lite-Git
 
-To initialize the repository-
+A minimal version of Git built for learning and exploration. `lite` lets you initialize a repo, add/commit files, inspect objects, and simulate basic Git internals.
 
-~lite init <filename>
+---
 
+## 📦 Initialization
 
+To initialize a Lite-Git repository:
 
+```bash
+~lite init "filename"
+```
 
+---
 
+## 📁 Basic Workflow
 
-To use Checkout, List Tree, Inspecting an object-
-make a new text file in a folder
-use add (git add test_file.txt)
-commit the file (git commit -m "initial commit")
-run there commands in the just file commited directory
+1. Create a new text file inside any folder.
+2. Use the following commands:
 
-Checkout:
-make a new directory(let us say new_empty_directory)
-run-
+```bash
+~lite add test_file.txt
+~lite commit -m "initial commit"
+```
+
+> Run all further commands inside the directory containing the committed file.
+
+---
+
+## 🔀 Checkout
+
+To checkout the current `master` branch into a new empty directory:
+
+```bash
+mkdir new_empty_directory
 ~lite checkout master ~/new_empty_directory
+```
 
-List Tree:
+---
+
+## 🌲 List Tree
+
+To list the tree structure of the current commit:
+
+```bash
 ~lite ls-tree -r HEAD
+```
 
-Inspect an Object:
+---
+
+## 🔍 Inspect an Object
+
+To inspect a blob (file) object using its hash:
+
+```bash
 ~lite cat-file blob <hash>
-[The hash will be the has code we get after running List Tree command]
+```
 
+> You can get the `<hash>` from the `ls-tree` command output.
 
+---
 
+## 🔗 rev-parse
 
+Navigate to a valid Lite-Git repository and run:
 
-The rev-parse command-
-Navigate to a valid git repository where some files are commited with a .git folder and run the following commands in directory:
+```bash
+~lite rev-parse --wyag-type commit HEAD   # Hash of commit object HEAD points to
+~lite rev-parse --wyag-type tree HEAD     # Hash of tree object associated with HEAD
+~lite rev-parse --wyag-type tag HEAD      # Tag object hash (if any), else returns None
+```
 
-~lite rev-parse --wyag-type commit HEAD <!-- Resolves the hash of the commit object that HEAD points to>
-~lite rev-parse --wyag-type tree HEAD <!-- Resolves the hash of the tree object associated with HEAD>
-~lite rev-parse --wyag-type tag HEAD <!-- Tries to resolve a tag object associated with HEAD, if None is output it indicates HEAD is not pointing to a tag>
+---
 
+## 📄 Ignored Files & Status
 
+Navigate to a Lite-Git repo with a tracked `.gitignore` file:
 
+### Check Ignored Files
 
+```bash
+~lite check-ignore <file-name>
+```
 
+> Prints `<file-name>` if it's ignored (based on `.gitignore` rules).
 
-Checking ignore and Status-
-Navigate to a valid git repository where .gitignore is being tracked(git add .gitignore) and run the following commands in the directory:
+### Check Status
 
-Checking Ignore:
-~lite check-ignore <file-name> <!-- if the file-name's extension is mentioned in the .gitignore then the file-name will be printed else not>
-
-Checking Status:
+```bash
 ~lite status
+```
 
-Add Files-
+---
+
+## ➕ Add & Commit
+
+### Add Files
+
+```bash
 ~lite add <file-name>
+```
 
-Commit Files-
-~lite commit -m "message"
+### Commit Changes
+
+```bash
+~lite commit -m "your commit message"
+```
+
+---
+
+## 🧠 Notes
+
+- All commands assume you're in a directory initialized with `~lite init`.
+- Commands mimic the behavior of Git, but are simplified and for educational purposes.
+```
+
+---
+
+Let me know if you want to add a demo section, contribution guide, or license info.
